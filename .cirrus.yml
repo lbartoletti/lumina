@@ -1,0 +1,16 @@
+check_task:
+  install_script:
+    - sed -i.bak -e 's,pkg+http://pkg.FreeBSD.org/\${ABI}/quarterly,pkg+http://pkg.FreeBSD.org/\${ABI}/latest,' /etc/pkg/FreeBSD.conf
+    - pkg install -y libXcursor xcb-util qt5 qt5-make xorg
+  compile_script:
+
+  matrix:
+    - name: freebsd11-amd64
+      freebsd_instance:
+        image: freebsd-11-2-release-amd64
+    - name: freebsd12-amd64
+      freebsd_instance:
+        image: freebsd-12-0-release-amd64
+    - name: freebsd13-amd64
+      freebsd_instance:
+        image_family: freebsd-13-0-snap
